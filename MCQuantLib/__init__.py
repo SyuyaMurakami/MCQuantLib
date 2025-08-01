@@ -1,4 +1,4 @@
-__version__ = "0.1.24"
+__version__ = "0.1.25"
 dependencyList = ('numpy', 'pandas', 'joblib', 'QuantLib')
 missingDependencies = []
 for dependency in dependencyList:
