@@ -376,7 +376,7 @@ first create a Heston process object, and pass it as parameter of ``value`` or `
 function. For example:
 
     from MCQuantLib import Heston
-    hst = Heston(.017, 0, -0.07196, 0.05093, 13.3601, 1.0394,  0.05073, 252)
+    hst = Heston(0.017, 0, -0.07196, 0.0625, 13.3601, 1.0394, 0.08946, 252)
     # ... There is a lot of other codes here
     option.value(start, 100, mc, hst)
     # or you can:
@@ -408,24 +408,16 @@ Class ``InstrumentMC`` does not has ``__init__`` function.
 So you have to write your own one. It is important to make 
 sure you have ``spot`` as a parameter of ``__init__``. 
 
-#### Attribute: _simulatedTimeArray
-
+Your class must declare ``_simulatedTimeArray`` attribute in ``__init__``. 
 This parameter tells MCQuantLib how to handle date. The random generator will generate
-random numbers according to this array. You should have at least one parameter named 
+random numbers according to this array. By default, the last element of ``_simulatedTimeArray`` will
+be the expiration day. Also, for ``__init__`` function, You should have at least one parameter named 
 as ``observationDay``, typed as ``np.ndarray``, because it is the base of your ``_simulatedTimeArray``. 
 By default, you should write it in ``__init__`` as:
     
     def __init__(self, spot: Number, observationDay: np.ndarray, optionParameter: Any):
         # ...
         self._simulatedTimeArray = np.append([0], observationDay)
-
-#### Attribute Function: _setSpot
-
-This function tells MCQuantLib how to initialize prices, such as spot price,
-barrier price and other price. By default, you should write it like:
-
-    def _setSpot(self, value: Number) -> None:
-        self._spot = value
 
 #### Attribute Function: pvLogPath
 
