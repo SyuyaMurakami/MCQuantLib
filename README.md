@@ -31,6 +31,16 @@ QuantLib. MCQuantLib is based on numpy and can use multiple CPU cores to simulat
 Almost every function in MCQuantLib is fine-tuned and optimized for speed. For vanilla option, 
 MCQuantLib can simulate 10^8 paths in 56s, or 10^6 paths in 3.4s, or 10^5 paths in 3s.
 
+## Important Notice
+
+If you are using python on Windows system, to unleash full power of MCQuantLib, you have to run
+powershell or terminal by **administrator privileges**. Then run your python script by:
+
+    python yourScript.py
+
+Running without administrator privileges will force ``joblib`` to fall back into single-process mode and
+not to really perform multi-process computing.
+
 ## Install
 
 Use ``pip install MCQuantLib`` to install.
@@ -448,9 +458,6 @@ day. Let's call it as MaxMinOption and price it:
             self._spot = spot
             self.observationDay = observationDay
             self._simulatedTimeArray = np.append([0], observationDay)
-
-        def _setSpot(self, value: Number) -> None:
-            self._spot = value
     
         def pvLogPath(self, logPath: np.ndarray, discountFactor: np.ndarray) -> Number:
             discountFactorTerminal = discountFactor[-1]
