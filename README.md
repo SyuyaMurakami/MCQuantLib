@@ -31,6 +31,10 @@ QuantLib. MCQuantLib is based on numpy and can use multiple CPU cores to simulat
 Almost every function in MCQuantLib is fine-tuned and optimized for speed. For vanilla option, 
 MCQuantLib can simulate 10^8 paths in 56s, or 10^6 paths in 3.4s, or 10^5 paths in 3s.
 
+## Document
+
+You can refer to document on: https://mcquantlib-doc.readthedocs.io/en/latest/index.html
+
 ## Important Notice
 
 If you are using python on Windows system, to unleash full power of MCQuantLib, you have to run
